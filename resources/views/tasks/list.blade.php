@@ -1,5 +1,31 @@
-@extends('layout.master')
-@section('body')
+@extends('BTVN_layout.master')
+@section('css')
+<style>
+    body {
+        font-family: 'Lato';
+    }
+
+    .fa-btn {
+        margin-right: 1px;
+    }
+    .task-table tbody tr td:nth-child(2){
+        width: 120px;
+    }
+    .task-table tbody tr td:nth-child(3){
+        width: 100px;
+    }
+    .footer{
+        height:50px;
+        width: 100%;
+        background:#f8f8f8;
+        color:#777;
+        text-align: center;
+        line-height: 50px;
+    }
+    
+</style>
+@endsection
+@section('content')
 <div class="col-sm-offset-2 col-sm-8">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -129,7 +155,9 @@
         </div>
     </div>
 </div>
-
-
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 @endsection
 
