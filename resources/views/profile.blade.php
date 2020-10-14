@@ -22,6 +22,7 @@
     <li>Mục tiêu nghề nghiệp: {{ $mt }}</li>
      {!! '<li>Giới thiệu bản thân: Chưa có nhiều kinh nghiệm về chuyên môn. Và đang rèn luyện và học tập để hoàn thành mục tiêu trên....</li>'!!}
 </ul>
+
 @endsection
 
 

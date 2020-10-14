@@ -6,11 +6,11 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 Danh sách công việc
             </a>
-            @foreach($menu as $value)
+            {{-- @foreach($menu as $value)
                 <div>
                     <a href="">{{ $value }}</a>
                 </div>
-            @endforeach
+            @endforeach --}}
         </div>
 
     </div>

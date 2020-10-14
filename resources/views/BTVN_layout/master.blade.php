@@ -21,6 +21,7 @@
 @include('BTVN_layout.header')
 
 <div class="container">
+    
     @yield('content')
 </div>
 @include('BTVN_layout.footer')

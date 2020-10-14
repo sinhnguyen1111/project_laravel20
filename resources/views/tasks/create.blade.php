@@ -11,8 +11,8 @@
                 <!-- Display Validation Errors -->
 
             <!-- New Task Form -->
-                <form action="{{ url('task')}}" method="POST" class="form-horizontal">
-                {{ csrf_field() }}
+                <form action="{{ route('task.store') }}" method="POST" class="form-horizontal">
+                @csrf
 
                 <!-- Task Name -->
                     <div class="form-group">
@@ -20,6 +20,7 @@
 
                         <div class="col-sm-6">
                             <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+                            <input type="text" name="email" id="task-mail" class="form-control" value="{{ old('task') }}">
                         </div>
                     </div>
 

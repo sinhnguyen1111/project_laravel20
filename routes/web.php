@@ -13,12 +13,80 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 });
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
+// use \App\Http\Controllers\HomeController;
+// Route::get('/',[HomeController::class,'index']);
+
+// Route::group([
+//     'prefix'=>'task',
+// ],function(){
+//     Route::get('create',[\App\Http\Controllers\Task\TaskController::class,'create'])
+//     ->name('task.create');
+//     Route::get('edit',[\App\Http\Controllers\Task\TaskController::class,'edit'])
+//     ->name('task.edit');
+//     Route::get('list',[\App\Http\Controllers\Task\TaskController::class,'index'])
+//     ->name('task.list');
+// });
+
+
+
+Route::resource('frontend/task',App\Http\Controllers\Frontend\TaskController::class);
+// Route::prefix('frontend/task')->group(function(){
+//     Route::get('/',[\App\Http\Controllers\Frontend\TaskController::class,'index'])
+//     ->name('task.index');
+
+//     Route::get('create',[\App\Http\Controllers\Frontend\TaskController::class,'create'])
+//     ->name('task.create');
+
+//     Route::post('/',[\App\Http\Controllers\Frontend\TaskController::class,'store'])
+//     ->name('task.store');
+
+//     Route::prefix('/{task}')->group(function(){
+//         Route::get('/',[\App\Http\Controllers\Frontend\TaskController::class,'show'])
+//         ->name('task.show');
+//         Route::delete('',[\App\Http\Controllers\Frontend\TaskController::class,'destroy'])
+//         ->name('task.destroy');
+//         Route::put('/',[\App\Http\Controllers\Frontend\TaskController::class,'update'])
+//         ->name('task.update');
+//         Route::get('/edit',[\App\Http\Controllers\Frontend\TaskController::class,'edit'])
+//         ->name('task.edit');
+//     });
+// });
+
+Route::prefix('frontend/task')->group(function(){
+    Route::get('complete/{id}',[\App\Http\Controllers\Frontend\TaskController::class,'complete'])
+    ->name('task.complete');
+    Route::get('recomplete',[\App\Http\Controllers\Frontend\TaskController::class,'reComplete'])->name('task.recomplete');
+});
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Buổi 3
 Route::get('/hello1', function () {
@@ -28,43 +96,7 @@ Route::get('/hello2', function () {
     return view('hello2');
 });
 
-Route::group([
-    'prefix'=>'task',
-],function(){
-    Route::get('create', function () {
-        return view('tasks.create');
-    })->name('task.create');
-    Route::get('edit', function () {
-        
-        $name ="Học lập trình";
-    //Cách 1:
-        // return view('tasks.edit',[
-        //     'name'=>$name,
-        // ]);
-    //cách 2:
-        return view('tasks.edit')->with([
-            'name'=>$name
-        ]);
-    })->name('task.edit');
-    Route::get('list', function () {
-        $list = [
-            [
-                'name' => 'Học View trong Laravel',
-                'status' => 0
-            ],
-            [
-                'name' => 'Học Route trong Laravel',
-                'status' => 1
-            ],
-           
-            [
-                'name' => 'Làm bài tập View trong Laravel',
-                'status' => -1
-            ],
-        ];
-        return view('tasks.list',['lists'=>$list]);
-    })->name('task.list');
-});
+
 
 //BTVN
 //3.1
@@ -167,25 +199,25 @@ Route::group([
 
 //bai 2.1
 
-Route::get('task/complete/{id}',function(){
-    return 'Hoàn thành!';
-})->name('todo.task.complete');
+// Route::get('task/complete/{id}',function(){
+//     return 'Hoàn thành!';
+// })->name('todo.task.complete');
 
-Route::get('task/reset/{id}',function(){
-    return 'Làm lại';
-})->name('todo.task.reset');
+// Route::get('task/reset/{id}',function(){
+//     return 'Làm lại';
+// })->name('todo.task.reset');
 
 //bai2.2
 //Nhóm route
-Route::group([
-    'prefix'=>'task',
-],function(){
-    Route::get('complete/{id}',function(){
-        return 'Hoàn thành';
-    });
-    Route::get('reset/{id}',function(){
-        return 'Làm lại';
-    });
-});
+// Route::group([
+//     'prefix'=>'task',
+// ],function(){
+//     Route::get('complete/{id}',function(){
+//         return 'Hoàn thành';
+//     });
+//     Route::get('reset/{id}',function(){
+//         return 'Làm lại';
+//     });
+// });
 
 
