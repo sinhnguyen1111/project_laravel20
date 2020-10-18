@@ -37,28 +37,27 @@ Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 
 
 
-Route::resource('frontend/task',App\Http\Controllers\Frontend\TaskController::class);
-// Route::prefix('frontend/task')->group(function(){
-//     Route::get('/',[\App\Http\Controllers\Frontend\TaskController::class,'index'])
-//     ->name('task.index');
+// Route::resource('frontend/task',App\Http\Controllers\Frontend\TaskController::class);
+Route::prefix('frontend/task')->group(function(){
+    Route::get('/',[\App\Http\Controllers\Frontend\TaskController::class,'index'])
+    ->name('task.index');
 
-//     Route::get('create',[\App\Http\Controllers\Frontend\TaskController::class,'create'])
-//     ->name('task.create');
+    Route::get('create',[\App\Http\Controllers\Frontend\TaskController::class,'create'])
+    ->name('task.create');
 
-//     Route::post('/',[\App\Http\Controllers\Frontend\TaskController::class,'store'])
-//     ->name('task.store');
-
-//     Route::prefix('/{task}')->group(function(){
-//         Route::get('/',[\App\Http\Controllers\Frontend\TaskController::class,'show'])
-//         ->name('task.show');
-//         Route::delete('',[\App\Http\Controllers\Frontend\TaskController::class,'destroy'])
-//         ->name('task.destroy');
-//         Route::put('/',[\App\Http\Controllers\Frontend\TaskController::class,'update'])
-//         ->name('task.update');
-//         Route::get('/edit',[\App\Http\Controllers\Frontend\TaskController::class,'edit'])
-//         ->name('task.edit');
-//     });
-// });
+    Route::post('/',[\App\Http\Controllers\Frontend\TaskController::class,'store'])
+    ->name('task.store');
+    Route::delete('delete/{id}',[\App\Http\Controllers\Frontend\TaskController::class,'destroy'])
+        ->name('task.destroy');
+  
+        Route::get('/{task}',[\App\Http\Controllers\Frontend\TaskController::class,'show'])
+        ->name('task.show');
+        
+        Route::put('/{id}',[\App\Http\Controllers\Frontend\TaskController::class,'update'])
+        ->name('task.update');
+        Route::get('{id}/edit',[\App\Http\Controllers\Frontend\TaskController::class,'edit'])
+        ->name('task.edit');
+});
 
 Route::prefix('frontend/task')->group(function(){
     Route::get('complete/{id}',[\App\Http\Controllers\Frontend\TaskController::class,'complete'])

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,7 +15,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks.list');
+        $tasks = Task::all();
+        // $tasks = Task::where('status',0)
+        // ->get();
+        // // dd($tasks);
+        return view('tasks.list',['tasks'=>$tasks]);
+        
     }
 
     /**
@@ -35,6 +41,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $input=$request->all();
+        $input->
+        $input->save();
+        // dd($input);
+
+
         // $input = $request->all();//Lấy tất cả dữ liệu
         // dd($input);
 
@@ -44,10 +56,10 @@ class TaskController extends Controller
         // $input = $request->except(['_token']);//Lấy tất cả trừ _token
         // dd($input);
 
-        $name = $request->only('name','deadline');
+        // $name = $request->only('name','deadline');
         // $deadline = $request->get('deadline');
         // $name = $request->get('name');
-        dd($name );    
+        // dd($name );    
     }
 
     /**
@@ -58,7 +70,9 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::find($id);//Tìm kiếm 1 dữ liệu
+        $task = Task::where('id', $id)->first();
+        dd($task);
     }
 
     /**
@@ -93,7 +107,10 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        $task = Task::find($id);
+        // dd($task);
+        $task->delete();
+        return redirect()->route('task.index');
     }
 
     public function complete($id)
